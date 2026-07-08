@@ -27,7 +27,7 @@ const PublicComplaint = () => {
     try {
       const fullComplaintText = `Title: ${title}\nLocation: ${location}\nDescription: ${complaint}`;
       
-      const res = await fetch('http://localhost:5000/api/ai/analyze', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ complaintText: fullComplaintText })
@@ -39,7 +39,7 @@ const PublicComplaint = () => {
       setTrackingId(newTrackingId);
 
       // Save to database
-      await fetch('http://localhost:5000/api/complaints', {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/complaints`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

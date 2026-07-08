@@ -10,7 +10,7 @@ const Projects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/projects');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects`);
       const data = await res.json();
       setProjects(data);
     } catch (err) {
@@ -35,7 +35,7 @@ const Projects = () => {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       const payload = { ...formData, createdBy: user._id };
       
-      const res = await fetch('http://localhost:5000/api/projects', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
